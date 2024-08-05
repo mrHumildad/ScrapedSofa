@@ -37,7 +37,7 @@ async function getTeamLinks(page, url, maxRetries = 10) {
     } catch (error) {
       console.error(`Error on attempt ${retries + 1}:`, error);
     } finally {
-      await browser.close();
+      console.log('what happens?')
       retries++;
     }
   }
