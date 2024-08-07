@@ -3,7 +3,6 @@ const { chromium } = require('playwright');
 async function getTeamLinks(page, url, maxRetries = 10) {
   let retries = 0;
   let teamLinks = [];
-
   while (retries < maxRetries) {
 
     try {
@@ -25,9 +24,9 @@ async function getTeamLinks(page, url, maxRetries = 10) {
       });
 
       // Log the extracted team links
-      console.log(`Team Links Found: ${teamLinks.length}`);
+      //console.log(`Team Links Found: ${teamLinks.length}`);
       teamLinks.forEach(link => {
-        console.log(`Team: ${link.name}, URL: ${link.url}`);
+        //console.log(`Team: ${link.name}, URL: ${link.url}`);
       });
 
       if (teamLinks.length > 0) {

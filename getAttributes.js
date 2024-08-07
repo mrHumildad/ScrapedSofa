@@ -21,11 +21,11 @@ async function getAttributes(page, url) {
       if (elements.length > 0) {
         const contents = await Promise.all(elements.map(async (el) => {
           const text = await el.evaluate(node => node.textContent.trim());
-          console.log('Extracted text:', text); // Debug log for extracted text
+          //console.log('Extracted text:', text); // Debug log for extracted text
           return text; // Return trimmed text
         }));
 
-        console.log('Contents:', contents); // Debug log for contents
+        //console.log('Contents:', contents); // Debug log for contents
 
         // Assuming the contents are in the order of ATT, TEC, TAC, DEF, CRE
         if (contents.length >= 5) {
@@ -64,7 +64,7 @@ async function getAttributes(page, url) {
       
       if (ratingElement) {
         const rating = await ratingElement.evaluate(node => node.textContent.trim());
-        console.log('Extracted rating:', rating); // Debug log for extracted rating
+        //console.log('Extracted rating:', rating); // Debug log for extracted rating
         attributes.rating = rating;
       } else {
         console.error('Rating element not found with the selector:', ratingSelector);
@@ -83,16 +83,15 @@ async function getAttributes(page, url) {
         return { role: roleName, fill: fillValue }; // Create an object for each role
       }));
 
-      console.log('Extracted Roles:', attributes.roles); // Log extracted roles
+     // console.log('Extracted Roles:', attributes.roles); // Log extracted roles
 
-      console.log('Extracted Attributes:', attributes);
+      console.log('Extracted Attributes:');
       success = true; // Mark as successful
     } catch (error) {
       console.error(`Error in getAttributes for URL ${url} on attempt ${attempt + 1}:`, error);
       attempt++;
       if (attempt >= maxRetries) {
         console.error('Max retries reached. Returning empty attributes.');
-        return {}; // Return an empty object on error
       }
     }
   }

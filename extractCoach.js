@@ -2,11 +2,11 @@
 //const fs = require('fs'); // File system module for writing files
 const getImage = require('./scrapeImage');
 
-async function extractCoach(page, url, id) {
+async function extractCoach(page, url, id, teamId) {
   const maxRetries = 3;
   let attempt = 0;
   let success = false;
-  let coach = null;
+  let coach = {team: teamId};
 
   while (attempt < maxRetries && !success) {
     try {
@@ -53,9 +53,9 @@ async function extractCoach(page, url, id) {
     }
   }
 	console.log(coach.id);
-	const imgURL = 'https://api.sofascore.app/api/v1/manager/' + 793664 + '/image'
+	const imgURL = 'https://api.sofascore.app/api/v1/manager/' + coach.id + '/image'
   console.log(imgURL);
-	coach.image = getImage(imgURL, coach.id, 'coach');
+	coach.image = getImage(imgURL, coach.id, 'coaches');
 	return coach;
 }
 
